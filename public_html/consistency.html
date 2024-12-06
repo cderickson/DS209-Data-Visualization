@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATASCI 209 - Group 1 Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Banner -->
+    <div class="banner">
+        <h1 style="color: white;">Evaluating Pitchers Using Advanced Stats</h1>
+        <p style="font-size: 20px;">DATASCI 209, Winter 2024 - Maryam Feizabad, Jonah Grossman, Jun Park, Chris Erickson</p>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="nav fixed-nav">
+        <a href="index.html">Home</a>
+        <a href="intro.html">Pitching Analytics 101</a>
+        <a href="consistency.html">Consistency Metrics</a>
+        <a href="situational.html">Situational Tendencies</a>
+    </div>
+
+    <!-- Main Content Area -->
+    <br>
+    <div class='tableauPlaceholder' id='viz1731645100247' 
+            style='width: 1600px; height: 927px; margin: 0 auto; padding: 0;'>
+        <noscript>
+            <a href='#'>
+                <img alt='Dashboard 1'
+                        src='https://public.tableau.com/static/images/Re/ReleasePointConsistencyMLBStatcast2023/Dashboard1/1_rss.png'
+                        style='border: none; padding: 0; margin: 0;' />
+            </a>
+        </noscript>
+        <object class='tableauViz' 
+                style='display: block; margin: 0 auto; width: 100%; height: 100%; padding: 0;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='ReleasePointConsistencyMLBStatcast2023/Dashboard1' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image'
+                    value='https://public.tableau.com/static/images/Re/ReleasePointConsistencyMLBStatcast2023/Dashboard1/1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
+        </object>
+    </div>
+    <script type='text/javascript'>
+        var divElement = document.getElementById('viz1731645100247');
+        var vizElement = divElement.getElementsByTagName('object')[0];
+        if (divElement.offsetWidth > 800) {
+            vizElement.style.width = '1600px';
+            vizElement.style.height = '927px';
+        } else if (divElement.offsetWidth > 500) {
+            vizElement.style.width = '1600px';
+            vizElement.style.height = '927px';
+        } else {
+            vizElement.style.width = '100%';
+            vizElement.style.height = '1277px';
+        }
+        var scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
+
+    <div class="content">
+        <div class="section-content">
+            <div class="section-text">
+                <h2>Introduction to Release Point Consistency in Pitching Mechanics</h2>
+                <p>In baseball, a pitcher’s release point—the exact point in three-dimensional space where the baseball is released during each pitch—is a key element in assessing their consistency and effectiveness on the mound. Scouts and talent evaluators view a pitcher’s consistency in release point as a critical indicator of their mechanics, which, when stable, lead to better accuracy and control. Even minor variations in release points can significantly impact a pitcher’s performance, affecting pitch accuracy and potentially giving batters clues about pitch type or trajectory.</p>
+                <h2>Why Release Point Consistency Matters</h2>
+                <p>Pitchers who can maintain a consistent release point across different pitch types and throughout a game tend to be more challenging for batters to read. Consistency in release points prevents a batter from predicting the type of pitch being thrown based on subtle mechanical changes, thereby enhancing the pitcher’s unpredictability. For scouts, consistent mechanics are valuable, as repeatable release points correlate with better control, fewer walks, and more effective game management.</p>
+            </div>
+            <img src="images/con-laser.png" alt="Pitch Trails" style="max-width: 450px;">
+        </div>
+
+        <div class="section-content">
+            <img src="images/con-release.jpg" alt="Release Point">
+            <div class="section-text">
+                <h2>Measuring Release Point Consistency</h2>
+                <p>Thanks to MLB’s Statcast system, release points can be tracked precisely with an X, Y, Z coordinate for every pitch thrown. Leveraging this tracking capability, we have developed a metric that captures the volatility—or lack thereof—in a pitcher’s release point, providing insights into their mechanical consistency.</p>
+            </div>
+        </div>
+
+        <div class="section-content">
+            <div class="section-text">
+                <h2>Our Process for Calculating Release Point Consistency</h2>
+                <p>The calculation involves several key steps:</p>
+                <ul>
+                    <li><strong>Distance Between Successive Pitches</strong>: After each pitch, we measure the distance between the three-dimensional coordinates of the release points of the current and previous pitches. This distance helps quantify the variation in release points from one pitch to the next.</li>
+                    <li><strong>Rolling Window Standard Deviation</strong>: To smooth out fluctuations, we use a rolling window of the last 10 pitches to calculate the standard deviation of these distance measurements. This rolling window volatility is the primary measure of release point consistency, providing insights into whether the pitcher’s mechanics have become more or less stable within short intervals.</li>
+                    <li><strong>Per-Game Aggregation</strong>: For easier comparison and visualization, these rolling volatility measures are aggregated per game and displayed on our scouting dashboard.</li>
+            </div>
+        </div>
+        <pre><code class="python">
+            # Lookback period in pitches.
+            window_size = 10
+            
+            # Compute 3-dimensional release point difference from previous pitch.
+            df['x_diff'] = df.groupby(['game_key','pitcher','pitch_type'])['release_pos_x'].diff()
+            df['y_diff'] = df.groupby(['game_key','pitcher','pitch_type'])['release_pos_y'].diff()
+            df['z_diff'] = df.groupby(['game_key','pitcher','pitch_type'])['release_pos_z'].diff()
+            
+            # Compute euclidean distance in release point from pitch-to-pitch.
+            df['release_distance'] = np.sqrt(df['x_diff']**2 + df['y_diff']**2 + df['z_diff']**2)
+            
+            # Calculate a rolling-window measure of standard deviation (units = feet).
+            df['rolling_volatility'] = df.groupby(['game_key','pitcher','pitch_type'])['release_distance']\
+                .rolling(window=window_size).std().reset_index(level=['game_key', 'pitcher', 'pitch_type'], drop=True)
+
+            # Generate table showing min/max/avg volatility and strike_percentage for each pitcher (by game and pitch_type). 
+            df_vol = df.groupby(['game_key','pitcher','pitch_type']).agg({'player_name':'last','rolling_volatility':['min','max','mean'],'ball':['sum','count']}).reset_index()
+        </code></pre>
+
+        <div class="section-content">
+            <div class="section-text">
+                <h2>Interpreting Release Point Consistency</h2>
+                <p>A lower volatility score indicates a higher level of consistency in the pitcher’s release point, reflecting more stable mechanics and control. Conversely, a higher volatility score suggests fluctuations in release points, which may hint at issues with mechanics or fatigue. Aggregating these values per game allows scouts to quickly see which pitchers demonstrate consistent mechanics over longer periods and identify trends over a season.</p>
+                <p>In our analysis, the league median Avg Release Point Volatility per Game was 1.59 inches (Starting Pitchers only, 2023 Statcast data). This benchmark provides a comparative baseline: pitchers with a volatility score below 1.59 inches exhibit above-average control and consistency. In contrast, scores above 1.59 inches suggest more variation in release points, potentially signaling mechanical inconsistency or issues with control.</p>
+                <p>The chart below shows the per-game Release Point Volatility data for George Kirby who, in 2023, showed above-average consistency in 27 of 31 starts (87.1%).</p>
+            </div>
+        </div>
+        <img src="images/con-kirby.png" alt="Avg Release Point Volatility by Game, Distribution" class="centered-image">
+        <br>
+
+        <div class="section-content">
+            <div class="section-text">
+                <h2>Implications for Scouts and Talent Evaluators</h2>
+                <p>For scouts, these distinctions are significant. A pitcher whose volatility consistently falls below the league median is likely to have repeatable mechanics, which enhances their ability to execute precise pitches and avoid predictable patterns. By visualizing these values across multiple games, our dashboard enables scouts to assess whether a pitcher maintains mechanical stability over time, thus informing recruitment, training, and game strategy decisions.</p>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+</body>
+</html>

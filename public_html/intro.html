@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitching Analytics 101</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Banner -->
+    <div class="banner">
+        <h1 style="color: white;">Evaluating Pitchers Using Advanced Stats</h1>
+        <p style="font-size: 20px;">DATASCI 209, Winter 2024 - Maryam Feizabad, Jonah Grossman, Jun Park, Chris Erickson</p>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="nav fixed-nav">
+        <a href="index.html">Home</a>
+        <a href="intro.html">Pitching Analytics 101</a>
+        <a href="consistency.html">Consistency Metrics</a>
+        <a href="situational.html">Situational Tendencies</a>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content">
+        <h1 style="text-align: center;">Understanding MLB Statcast Data</h1>
+        <h3 style="text-align: center;">A Guide to Baseball Analytics and Pitching Basics</h3>
+
+        <div class="section-content">
+            <div class="section-text">
+                <h2>What is MLB Statcast?</h2>
+                <p>Statcast is a revolutionary tracking technology implemented by Major League Baseball (MLB) that captures high-resolution data for every play on the field. Introduced in 2015, Statcast leverages cameras and radar to measure a vast array of metrics—everything from the speed and spin of a baseball to the exact positioning and reaction times of players on the field. This dataset is now a fundamental tool for teams, coaches, scouts, and analysts who aim to evaluate player performance with a high degree of detail and accuracy.</p>
+            </div>
+            <img src="images/intro-statcast.png" alt="Statcast Logo">
+        </div>
+
+        <h2>Key Metrics in Statcast Data</h2>
+        <p>Statcast provides a wide variety of data points that help break down a player's on-field actions. Some commonly analyzed metrics include:</p>
+        <ul>
+            <li><strong>Exit Velocity</strong>: The speed of the ball as it comes off the bat, giving insights into the strength and power of a hitter.</li>
+            <li><strong>Launch Angle</strong>: The angle at which the ball leaves the bat, crucial for understanding a hitter’s potential for home runs or ground balls.</li>
+            <li><strong>Pitch Velocity</strong>: The speed of the pitch as it leaves the pitcher’s hand, indicating the pitcher's power and effectiveness.</li>
+            <li><strong>Spin Rate</strong>: The rate of spin on the ball, which significantly affects pitch movement and effectiveness.</li>
+            <li><strong>Pitch Movement</strong>: The amount of horizontal or vertical break on a pitch, helping to evaluate the deception and difficulty of the pitch.</li>
+        </ul>
+    
+        <div class="section-content">
+            <img src="images/intro-coach.png" alt="Baseball Coaches Analyzing Data">
+            <div class="section-text">
+                <h2>How Coaches and Scouts Use Statcast Data</h2>
+                <p>Statcast data has become invaluable in helping coaches and scouts make decisions about player performance, development, and strategy. Here are a few ways it is used:</p>
+                <ul>
+                    <li><strong>Pitch Evaluation</strong>: Coaches can analyze metrics like pitch velocity, spin rate, and movement to assess a pitcher’s effectiveness.</li>
+                    <li><strong>Hitter Analysis</strong>: Exit velocity and launch angle allow scouts to evaluate a hitter’s power and contact quality.</li>
+                    <li><strong>Defensive Positioning</strong>: With data on player reaction times and sprint speed, coaches can improve defensive performance.</li>
+                    <li><strong>Injury Prevention and Conditioning</strong>: Tracking metrics like pitch counts and workload helps manage a player's health and minimize injury risk.</li>
+                </ul>
+            </div>
+        </div>
+        <p>The granularity of Statcast data enables teams to go beyond traditional statistics and make player assessments that align with game strategy, player development, and recruitment.</p>
+    
+        <div class="section-content">
+            <div class="section-text">
+                <h2>Introduction to Pitching in Baseball</h2>
+                <p>For those new to baseball, pitching is central to both the game’s strategy and excitement. The pitcher plays a crucial role, as their goal is to prevent the opposing team from getting on base and scoring. Here’s an overview of key pitching concepts to help understand this role:</p>
+            </div>
+            <img src="images/intro-pitcher.jpg" alt="Baseball Pitcher">
+        </div>
+
+        <div class="section-content">
+            <img src="images/intro-grip.png" alt="Pitching Grip">
+            <div class="section-text">
+                <h2>Pitch Types and Characteristics</h2>
+                <p>Different pitches are thrown with varied grips and mechanics to produce unique movement, speed, and deception. Common pitch types include:</p>
+                <ul>
+                    <li><strong>Fastball</strong>: A high-speed pitch aimed to challenge batters with its velocity. Types include the four-seam fastball (straight and fast) and the two-seam fastball (slightly slower with more movement).</li>
+                    <li><strong>Slider</strong>: A pitch with a sharp lateral break, intended to move away from or into the batter at the last moment.</li>
+                    <li><strong>Curveball</strong>: Known for its pronounced downward movement, the curveball can deceive hitters due to its drop.</li>
+                    <li><strong>Changeup</strong>: Thrown with a similar motion to a fastball but at a slower speed, meant to disrupt the hitter’s timing.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="section-content">
+            <div class="section-text">
+                <h2>Key Pitching Metrics and Mechanics</h2>
+                <p>Understanding a few foundational concepts helps illuminate what makes a pitcher effective:</p>
+                <ul>
+                    <li><strong>Velocity</strong>: How fast the ball is thrown, often an indicator of a pitcher’s strength. Higher velocities make it harder for batters to react.</li>
+                    <li><strong>Control and Command</strong>: Control refers to the ability to consistently throw strikes, while command indicates precise location within the strike zone.</li>
+                    <li><strong>Release Point</strong>: The exact point where a pitcher releases the ball, which affects both pitch trajectory and consistency. Consistent release points can make a pitcher’s arsenal harder to predict.</li>
+                    <li><strong>Spin Rate and Movement</strong>: Spin rate affects how a pitch moves. For example, a high spin rate on a fastball often keeps it from dropping as expected, making it appear to "rise" in the hitter’s view.</li>
+                </ul>
+            </div>
+            <img src="images/intro-sz.png" alt="Strike Zone">
+        </div>
+    
+        <h2>Pitching Strategy</h2>
+        <p>A pitcher’s job is not only to throw the ball but to outthink and outmaneuver the batter. Successful pitchers often mix pitch types, locations, and speeds to keep hitters off-balance and guessing.</p>
+    
+        <p>In summary, Statcast has opened up new ways for baseball professionals to evaluate players. For those interested in baseball analytics or simply understanding the game better, diving into Statcast data provides a fascinating look at the science and strategy behind America's pastime. With this data, coaches and scouts can make more informed decisions about how to enhance players' performances, manage game strategies, and recruit promising talent.</p>    
+    </div>
+    <br><br>
+</body>
+</html>

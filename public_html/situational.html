@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATASCI 209 - Group 1 Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Banner -->
+    <div class="banner">
+        <h1 style="color: white;">Evaluating Pitchers Using Advanced Stats</h1>
+        <p style="font-size: 20px;">DATASCI 209, Winter 2024 - Maryam Feizabad, Jonah Grossman, Jun Park, Chris Erickson</p>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="nav fixed-nav">
+        <a href="index.html">Home</a>
+        <a href="intro.html">Pitching Analytics 101</a>
+        <a href="consistency.html">Consistency Metrics</a>
+        <a href="situational.html">Situational Tendencies</a>
+    </div>
+
+    <!-- Main Content Area -->
+     <br>
+    <div class='tableauPlaceholder' id='viz1731693187597' style='width: 1600px; height: 927px; margin: auto;'>
+        <noscript>
+            <a href='#'>
+                <img alt='Dashboard 2'
+                    src='https://public.tableau.com/static/images/Si/SituationalPitchDistributionMLBStatcast2023/Dashboard2/1_rss.png'
+                    style='border: none; padding: 0; margin: 0;' />
+            </a>
+        </noscript>
+        <object class='tableauViz' 
+                style='display: block; margin: 0 auto; width: 100%; height: 100%; padding: 0;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='SituationalPitchDistributionMLBStatcast2023/Dashboard2' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image'
+                value='https://public.tableau.com/static/images/Si/SituationalPitchDistributionMLBStatcast2023/Dashboard2/1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
+        </object>
+    </div>
+    <script type='text/javascript'>
+        var divElement = document.getElementById('viz1731693187597');
+        var vizElement = divElement.getElementsByTagName('object')[0];
+        if (divElement.offsetWidth > 800) {
+            vizElement.style.width = '1600px';
+            vizElement.style.height = '927px';
+        } else if (divElement.offsetWidth > 500) {
+            vizElement.style.width = '1600px';
+            vizElement.style.height = '927px';
+        } else {
+            vizElement.style.width = '100%';
+            vizElement.style.height = '1177px';
+        }
+        var scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
+
+    <div class="content">
+        <div class="section-content">
+            <div class="section-text">
+                <h2>Introduction to Situational Tendencies</h2>
+                <p>In baseball, understanding how pitchers adapt to varying game situations is essential for coaches and scouts. Evaluating a pitcher's performance based on factors like pitch location, pitch type, and situational adjustments provides insights into their decision-making, control, and overall effectiveness. To address this, we’ve developed a dashboard that visualizes a pitcher’s pitch location heatmap and pitch type distribution, segmented by critical game scenarios such as the ball-strike count, outs, runners on base, and batter handedness.</p>
+            </div>
+            <img src="images/sit-pitcher1.png" alt="Baseball Pitcher" style="max-height: 350px;">
+        </div>
+
+        <div class="section-content">
+            <div class="section-text">
+                <h2>Dashboard Overview</h2>
+                <p>The Pitch Location Heatmap represents the density and distribution of pitches thrown across the strike zone and surrounding areas, highlighting the pitcher’s tendencies to target specific locations based on game situations.This visualization represents the density and distribution of pitches thrown across the strike zone and surrounding areas, highlighting the pitcher’s tendencies to target specific locations based on game situations.</p>
+                <p>The Pitch Type Distribution displays the percentage of each pitch type (e.g., fastball, slider, curveball, changeup) thrown in different scenarios. It highlights a pitcher’s decision-making process, including how they sequence pitches or adjust based on game dynamics.</p>
+            </div>
+        </div>
+
+        <div class="section-content">
+            <img src="images/sit-filter.png" alt="Dataset Filter">
+            <div class="section-text">
+                <h2>How the Dashboard can be Filtered</h2>
+                <ul>
+                    <li><strong>Count (Balls/Strikes)</strong>: Differentiate between early counts, two-strike counts, and favorable counts for the batter or pitcher.</li>
+                    <li><strong>Outs</strong>: Analyze pitching tendencies with zero, one, or two outs to determine inning progression strategies.</li>
+                    <li><strong>Runners on Base</strong>: Focus on situations such as bases empty, runners in scoring position, and bases loaded to evaluate pressure management.</li>
+                    <li><strong>Batter Handedness</strong>: Segments the dataset by left-handed and right-handed batters to highlight differences in how the pitcher approaches same-handed or cross-handed matchups.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-content">
+            <div class="section-text">
+                <h2>Why This Information Matters</h2>
+                <ul>
+                    <li><strong>Situational Awareness</strong>:
+                        <p>The ball-strike count dictates whether a pitcher can attack the strike zone or needs to pitch cautiously. For example, a high reliance on offspeed pitches in two-strike counts can indicate confidence in strikeout pitches.</p>
+                        <p>With runners on base, especially in scoring position, heatmaps can reveal whether a pitcher focuses on generating ground balls or avoiding pitches in hittable zones.</p>
+                    </li>
+                    <li><strong>Pressure Management</strong>:
+                        <p>Heatmaps and pitch type distributions show how pitchers perform under pressure. For instance, consistency in execution during bases-loaded situations can distinguish a reliable pitcher from one prone to errors.</p>
+                    </li>
+                    <li><strong>Adaptability</strong>:
+                        <p>The ability to adjust pitch selection and location based on batter handedness is a crucial skill. Heatmaps segmented by left-handed and right-handed batters help identify whether a pitcher has a weakness that opponents could exploit.</p>
+                    </li>
+                    <li><strong>Pitch Repertoire Evaluation</strong>:
+                        <p>A well-rounded pitch repertoire is critical for sustained success. Distributions provide a snapshot of which pitches a pitcher relies on and whether they are predictable in certain situations.</p>
+                    </li>
+                    <li><strong>Scouting and Player Development</strong>:
+                        <p>Coaches can use the insights to tailor training programs, emphasizing location precision or developing secondary pitches to address situational weaknesses.</p>
+                    </li>
+                </ul>
+            </div>
+            <img src="images/sit-pitchloc.png" alt="Statcast Pitch Locations" style="max-width: 400px;">
+        </div>
+
+        <div class="section-content">
+            <img src="images/sit-coach.png" alt="Pitching Coach" style="max-width: 550px;">
+            <div class="section-text">
+                <h2>Key Insights Coaches and Scouts Can Derive</h2>
+                <ul>
+                    <li><strong>Location Consistency</strong>:
+                        <p>Do the heatmaps show a repeated ability to hit target zones, or does the pitcher miss spots frequently under pressure?</p>
+                    </li>
+                    <li><strong>Pitch Predictability</strong>:
+                        <p>Does the pitcher vary pitch type sufficiently, or do they rely heavily on a single pitch in critical situations?</p>
+                    </li>
+                    <li><strong>Situational Adjustments</strong>:
+                        <p>How does the pitcher adapt their strategy when behind in the count, with runners on base, or against batters of different handedness?</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-content">
+            <div class="section-text">
+                <h2>Conclusion</h2>
+                <p>This dashboard provides a comprehensive view of a pitcher’s situational tendencies, enabling coaches and scouts to make informed decisions. Whether evaluating a pitcher’s ability to control the game, handle pressure, or adjust to opponents, this tool is invaluable for player development and talent identification.</p>
+                <p>By leveraging data visualization techniques to break down complex pitching scenarios, we empower teams to refine strategies and help pitchers reach their full potential.</p>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</body>
+</html>
